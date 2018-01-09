@@ -1,4 +1,9 @@
 name: neko
+channels:
+  - conda-forge
+  - defaults
 dependencies:
   - python=3.6
   - flask
+  - flask-restful
+  - pylint
