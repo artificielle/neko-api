@@ -1,35 +1,15 @@
-from typing import List, NamedTuple
-from datetime import datetime
-from flask_restful import Resource
-from ..common.util import marshal, namedtuple_fields
-
-class Post(NamedTuple):
-  id: str
-  link: str
-  time: datetime
-  site: str
-  title: str
-  author: str
-  summary: str
-  tags: List[str] = []
-
-post_fields = namedtuple_fields(Post)
+from flask_restful import Resource, marshal
+from ..models.post import Post
 
 class PostResource(Resource):
 
   def get(self, id=None):
-    post = Post(
-      id=id or '',
-      link='https://example.org/posts/1',
-      time=datetime.now(),
-      site='YGGDRASIL',
-      title='Shalltear',
-      author='Peroroncino',
-      summary='Balabala..',
-      tags=['Ainz Ooal Gown', 'Valkyrie'],
-    )
-    post_dict = marshal(post, post_fields)
-    if id:
-      return post_dict
-    else:
-      return {'data': [post_dict], 'page_size': 20}
+    return self.get_by_id(id) if id else self.get_all()
+
+  def get_all(self):
+    posts = Post.query.all()
+    return {'data': marshal(posts, Post.fields), 'page_size': len(posts)}
+
+  def get_by_id(self, id):
+    post = Post.query.filter_by(id=id).first()
+    return marshal(post, Post.fields) if post else None, 404

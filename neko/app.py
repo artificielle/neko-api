@@ -1,12 +1,17 @@
 from flask import Flask
-from flask_restful import Api
-from .resources.post import PostResource
+from .models import db
+from .resources import api
 
 app = Flask(__name__)
 
-api = Api(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-api.add_resource(PostResource, '/posts', '/posts/', '/posts/<string:id>')
+api.init_app(app)
+
+db.init_app(app)
 
 def main():
+  from .models.db_init import db_init
+  db_init(app)
   app.run(debug=True)

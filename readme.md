@@ -16,7 +16,8 @@ scripts/run
 
 ## references
 
-- <http://flask.pocoo.org/docs/>
+- <http://flask.pocoo.org/docs>
+- <http://flask-sqlalchemy.pocoo.org>
 - <https://flask-restful.readthedocs.io>
 
 [build-badge]: https://img.shields.io/travis/airt/neko-api.svg
