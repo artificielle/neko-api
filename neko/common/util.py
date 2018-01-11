@@ -22,7 +22,7 @@ def namedtuple_fields(nt: Type[NamedTuple]):
     List[int]: fields.List(fields.Integer),
     List[float]: fields.List(fields.Float),
   }
-  # pylint: disable=protected-access
+  # pylint: disable = protected-access
   return {k: type_to_field[t] for k, t in nt._field_types.items()}
 
 # Fix marshal for namedtuple
@@ -34,3 +34,9 @@ def marshal(data, fields):
   if isinstance(data, (list, tuple)) and not is_namedtuple(data):
     return [marshal(d, fields) for d in data]
   return OrderedDict((k, make(v).output(k, data)) for k, v in fields.items())
+
+def hashid_encode(data):
+  return data
+
+def hashid_decode(data):
+  return data

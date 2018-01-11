@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -ex
+
 pylint neko
 
 python -m unittest discover -v -p '*test*.py'

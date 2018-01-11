@@ -4,6 +4,7 @@ from .post import Post
 
 def db_init(app):
   with app.app_context():
+    # pylint: disable = no-member
     db.create_all()
     db.session.add(Post(
       time=datetime.now(),

@@ -11,7 +11,7 @@ conda env create -f environment.yml
 
 source activate neko
 
-scripts/run
+FLASK_DEBUG=1 scripts/run
 ```
 
 ## references

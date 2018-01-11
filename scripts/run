@@ -1,9 +1,3 @@
-#!/usr/bin/env python
+#!/usr/bin/env bash
 
-import sys
-
-sys.path.append('.')
-
-from neko.app import main
-
-main()
+FLASK_APP=neko/app.py flask run

@@ -1,19 +1,20 @@
 from sqlalchemy import Column, DateTime, Integer, String, Text
 from flask_restful import fields
+from ..common.util import hashid_encode
 from . import db
 
 class Post(db.Model):
-  id = Column(Integer, primary_key=True)
-  time = Column(DateTime)
-  link = Column(String)
-  site = Column(String)
-  title = Column(String)
-  author = Column(String)
-  summary = Column(Text)
+  _id = Column(Integer, primary_key=True)
+  time = Column(DateTime, nullable=False)
+  link = Column(String, nullable=False, unique=True, index=True)
+  site = Column(String, nullable=False)
+  title = Column(String, nullable=False)
+  author = Column(String, nullable=False)
+  summary = Column(Text, nullable=False)
   # tags: List[str] = Column(Text)
 
   fields = {
-    'id': fields.Integer,
+    'id': fields.String(attribute=lambda x: hashid_encode(x.link)),
     'time': fields.DateTime('iso8601'),
     'link': fields.String,
     'site': fields.String,
