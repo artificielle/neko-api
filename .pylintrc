@@ -3,4 +3,4 @@ indent-string = '  '
 indent-after-paren = 2
 
 [MESSAGES CONTROL]
-disable = invalid-name, missing-docstring, no-else-return, no-self-use, redefined-builtin, too-few-public-methods
+disable = invalid-name, missing-docstring, no-else-return, no-self-use, protected-access, redefined-builtin, too-few-public-methods

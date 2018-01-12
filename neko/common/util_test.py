@@ -4,7 +4,7 @@ from typing import List, NamedTuple
 from datetime import datetime
 from collections import OrderedDict, namedtuple
 
-from .util import is_namedtuple, namedtuple_fields, marshal
+from .util import is_namedtuple, marshal_namedtuple, namedtuple_fields
 
 NT = namedtuple('NT', ['x', 'y'])
 
@@ -71,7 +71,7 @@ class UtilTestCase(TestCase):
       'xs': ['b', 'c'],
     })
 
-    self.assertDictEqual(expected, marshal(c, c_fields))
+    self.assertDictEqual(expected, marshal_namedtuple(c, c_fields))
 
   def test_marshal_namedtuple(self):
     tnt_fields = namedtuple_fields(TNT)
@@ -88,4 +88,4 @@ class UtilTestCase(TestCase):
       'xs': ['b', 'c'],
     })
 
-    self.assertDictEqual(expected, marshal(tnt, tnt_fields))
+    self.assertDictEqual(expected, marshal_namedtuple(tnt, tnt_fields))
