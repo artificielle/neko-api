@@ -14,7 +14,7 @@ class Post(db.Model):
 
   fields = {
     'id': fields.String(attribute='_id'),
-    'time': fields.DateTime('iso8601'),
+    'time': fields.Integer(attribute=lambda x: x.time.timestamp()),
     'link': fields.String,
     'site': fields.String,
     'title': fields.String,

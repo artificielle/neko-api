@@ -4,9 +4,9 @@ from ..models.post import Post
 
 class PostResource(Resource):
 
-  parser = reqparse.RequestParser().add_argument('before').add_argument('after')
+  parser = reqparse.RequestParser().add_argument('before', type=int).add_argument('after', type=int)
 
-  def get(self, id=None):
+  def get(self, id: int = None):
     args = self.parser.parse_args()
     if id:
       return self.get_by_id(id)
