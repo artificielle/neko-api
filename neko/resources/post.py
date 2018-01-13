@@ -1,5 +1,5 @@
 from flask_restful import Resource, marshal_with, reqparse
-from ..common.util import pagination_fields, id_decode
+from ..common.util import pagination_fields
 from ..models.post import Post
 
 class PostResource(Resource):
@@ -31,4 +31,4 @@ class PostResource(Resource):
 
   @marshal_with(Post.fields)
   def get_by_id(self, id):
-    return Post.query.get_or_404(id_decode(id))
+    return Post.query.get_or_404(id)

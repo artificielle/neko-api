@@ -3,4 +3,4 @@ from .post import PostResource
 
 api = Api()
 
-api.add_resource(PostResource, '/posts', '/posts/', '/posts/<string:id>')
+api.add_resource(PostResource, '/posts', '/posts/', '/posts/<int:id>')

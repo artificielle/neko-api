@@ -41,9 +41,3 @@ def pagination_fields(item_fields, reverse=False):
     'page': fields.Integer,
     'per_page': fields.Integer,
   }
-
-def id_encode(data):
-  return str(data)
-
-def id_decode(data):
-  return int(data)
